@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../js/api";
+import { handleFormSubmit } from "../../../js/utils";
 import "./personal.css";
 
 export function renderPersonalTab(data) {
@@ -128,7 +129,7 @@ export function renderPersonalTab(data) {
     });
 
     // Отправка формы
-    $("#personal-form").on("submit", function (e) {
+    $("#personal-form").on("submit", async function (e) {
         e.preventDefault();
 
         const form = this;
@@ -140,44 +141,28 @@ export function renderPersonalTab(data) {
         formData.set("isHiddenBirthDate", form.querySelector("[name='isHiddenBirthDate']").checked ? "on" : "off");
         formData.set("isShowYearBirthDate", form.querySelector("[name='isShowYearBirthDate']").checked ? "on" : "off");
 
-
         if (!hasFile) {
             formData.delete("photo")
             if (!existingPhotoUrl) {
                 alert("Пожалуйста, прикрепите фотографию.");
                 return;
             }
-
-            // ✅ отправим пустое значение — чтобы сервер получил ключ photo
-            // formData.append("save_old_photo", "yes");
-            // formData.append("photo", null);
         }
 
         if (window.resumeId) {
             formData.append("resumeId", window.resumeId);
         }
 
-        fetch(`${API_HOST}/komus_career_app/api/controller.html?action=send_resume_personal_data`, {
-            method: "POST",
-            body: formData,
-        })
-            .then((r) => r.json())
-            .then((response) => {
-                if (response.success) {
-                    const resumeId = window.resumeId;
-                    const nextUrl = `?page=profile-form&tab=experience&resume_id=${resumeId}`;
-                    history.pushState({}, "", nextUrl);
-                    console.log("Triggering popstate...");
-                    window.dispatchEvent(new Event("popstate"));
-                } else {
-                    alert("Ошибка при сохранении данных: " + response.error_text);
-                }
-            })
-            .catch((err) => {
-                console.error("Ошибка запроса:", err);
-                alert("Произошла ошибка при отправке данных");
-            });
+        await handleFormSubmit({
+            formData,
+            apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_personal_data`,
+            onSuccess: () => {
+                const resumeId = window.resumeId;
+                const nextUrl = `?page=profile-form&tab=experience&resume_id=${resumeId}`;
+                history.pushState({}, "", nextUrl);
+                window.dispatchEvent(new Event("popstate"));
+            }
+        });
     });
-
 }
 

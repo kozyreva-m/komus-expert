@@ -1,4 +1,6 @@
 import "./settings.css";
+import { API_HOST } from "../../../js/api";
+import { handleFormSubmit } from "../../../js/utils";
 
 export function renderSettingsTab() {
   const $container = $("#form-tab-content").empty();
@@ -93,7 +95,7 @@ export function renderSettingsTab() {
 
   $container.append(formHtml);
 
-  $("#final-form").on("submit", function (e) {
+  $("#final-form").on("submit", async function (e) {
     e.preventDefault();
 
     const result = {
@@ -110,9 +112,19 @@ export function renderSettingsTab() {
       },
     };
 
-    console.log("Отправка данных (моки):", result);
+    const formData = new FormData();
+    formData.append("resumeId", result.resumeId);
+    formData.append("communitySettings", JSON.stringify(result.communitySettings));
+    formData.append("profileSettings", JSON.stringify(result.profileSettings));
 
-    // тут в будущем будет реальный fetch
-    alert("Данные сохранены (моки)");
+    await handleFormSubmit({
+      formData,
+      apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_settings_data`,
+      onSuccess: () => {
+        // После успешного сохранения можно перенаправить на страницу профиля
+        history.pushState({}, "", "?page=profile");
+        window.dispatchEvent(new Event("popstate"));
+      }
+    });
   });
 }

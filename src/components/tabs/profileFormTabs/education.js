@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../js/api";
+import { handleFormSubmit } from "../../../js/utils";
 import "./education.css";
 
 
@@ -94,7 +95,7 @@ export function renderEducationTab(data) {
   });
 
   // Отправка
-  $("#education-form").on("submit", function (e) {
+  $("#education-form").on("submit", async function (e) {
     e.preventDefault();
 
     const educations = [];
@@ -115,23 +116,14 @@ export function renderEducationTab(data) {
       $("[name='additionalInfo']").val() || ""
     );
 
-    fetch(`${API_HOST}/komus_career_app/api/controller.html?action=send_resume_educations_data`, {
-      method: "POST",
-      body: formData,
-    })
-      .then(r => r.json())
-      .then(response => {
-        if (response.success) {
-          const nextUrl = `?page=profile-form&tab=settings&resume_id=${window.resumeId}`;
-          history.pushState({}, "", nextUrl);
-          window.dispatchEvent(new Event("popstate"));
-        } else {
-          alert("Ошибка при сохранении: " + response.error_text);
-        }
-      })
-      .catch(err => {
-        console.error("Ошибка запроса:", err);
-        alert("Ошибка при отправке данных");
-      });
+    await handleFormSubmit({
+      formData,
+      apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_educations_data`,
+      onSuccess: () => {
+        const nextUrl = `?page=profile-form&tab=settings&resume_id=${window.resumeId}`;
+        history.pushState({}, "", nextUrl);
+        window.dispatchEvent(new Event("popstate"));
+      }
+    });
   });
 }

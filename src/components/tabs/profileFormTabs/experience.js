@@ -1,4 +1,5 @@
 import { API_HOST } from "../../../js/api";
+import { handleFormSubmit } from "../../../js/utils";
 import "./experience.css";
 
 export function renderExperienceTab(data) {
@@ -143,7 +144,7 @@ export function renderExperienceTab(data) {
   });
 
   // Отправка формы
-  $("#experience-form").on("submit", function (e) {
+  $("#experience-form").on("submit", async function (e) {
     e.preventDefault();
 
     const result = {
@@ -180,24 +181,15 @@ export function renderExperienceTab(data) {
     formData.append("totalDuration", JSON.stringify(result.totalDuration));
     formData.append("recommendations", result.recommendations);
 
-    fetch(`${API_HOST}/komus_career_app/api/controller.html?action=send_resume_experience_data`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((r) => r.json())
-      .then((response) => {
-        if (response.success) {
-          const nextUrl = `?page=profile-form&tab=skills&resume_id=${window.resumeId}`;
-          history.pushState({}, "", nextUrl);
-          window.dispatchEvent(new Event("popstate"));
-        } else {
-          alert("Ошибка при сохранении: " + response.error_text);
-        }
-      })
-      .catch((err) => {
-        console.error("Ошибка:", err);
-        alert("Ошибка при отправке данных");
-      });
+    await handleFormSubmit({
+      formData,
+      apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_experience_data`,
+      onSuccess: () => {
+        const nextUrl = `?page=profile-form&tab=skills&resume_id=${window.resumeId}`;
+        history.pushState({}, "", nextUrl);
+        window.dispatchEvent(new Event("popstate"));
+      }
+    });
   });
 
   // Первичный пересчет стажа
