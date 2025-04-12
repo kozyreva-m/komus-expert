@@ -7,12 +7,12 @@ export function renderPersonalTab(data) {
     const html = `
       <form id="personal-form" class="profile-form" enctype="multipart/form-data">
         <div class="form-row">
-          <label>Фамилия *</label>
+          <label>Фамилия <span class="required">*</span></label>
           <input name="lastName" type="text" required value="${data.lastName}" disabled />
         </div>
   
         <div class="form-row">
-          <label>Имя *</label>
+          <label>Имя <span class="required">*</span></label>
           <input name="firstName" type="text" required value="${data.firstName}" disabled />
         </div>
   
@@ -33,8 +33,10 @@ export function renderPersonalTab(data) {
         <div class="form-row">
           <label>Дата рождения</label>
           <input type="date" name="birthDate" value="${data.birthDate}" disabled />
-          <label><input type="checkbox" name="isShowYearBirthDate" ${data.isShowYearBirthDate === "on" ? "checked" : ""} /> Не показывать год</label>
-          <label><input type="checkbox" name="isHiddenBirthDate" ${data.isHiddenBirthDate === "on" ? "checked" : ""} /> Не показывать дату</label>
+          <div class="birth-date-options">
+            <label><input type="checkbox" name="isShowYearBirthDate" ${data.isShowYearBirthDate === "on" ? "checked" : ""} /> Не показывать год</label>
+            <label><input type="checkbox" name="isHiddenBirthDate" ${data.isHiddenBirthDate === "on" ? "checked" : ""} /> Не показывать дату</label>
+          </div>
         </div>
   
         <div class="form-row">
@@ -52,7 +54,7 @@ export function renderPersonalTab(data) {
         </div>
   
         <div class="form-row">
-          <label>Регион проживания</label>
+          <label>Регион проживания <span class="required">*</span></label>
           <input name="regionOfResidence" type="text" required value="${data.regionOfResidence}" />
         </div>
   
@@ -67,7 +69,7 @@ export function renderPersonalTab(data) {
         </div>
   
         <div class="form-row">
-          <label>Мобильный телефон</label>
+          <label>Мобильный телефон <span class="required">*</span></label>
           <input name="phone" type="tel" required value="${data.phone}" />
         </div>
   
@@ -87,15 +89,16 @@ export function renderPersonalTab(data) {
         </div>
   
         <div class="form-row">
-        <label>Фотография *</label>
-        <div class="photo-block">
-            ${data.photo ? `<img src="${data.photo}" alt="Фото" class="photo-preview" />` : ""}
-            <input type="file" name="photo" accept="image/*" ${data.photo ? "" : "required"} />
-            <small>Формат jpg, png, gif. До 10 МБ</small>
-        </div>
+          <label>Фотография <span class="required">*</span></label>
+          <div class="photo-block">
+              ${data.photo ? `<img src="${data.photo}" alt="Фото" class="photo-preview" />` : ""}
+              <div class="photo-upload">
+                  <input type="file" name="photo" accept="image/*" ${data.photo ? "" : "required"} />
+                  <small>Формат jpg, png, gif. До 10 МБ</small>
+              </div>
+          </div>
         </div>
 
-  
         <div class="formActions">
           <button type="submit" class="submitButton">Продолжить</button>
         </div>

@@ -39,7 +39,7 @@
 
 /* Форма анкеты */
 .profile-form {
-    max-width: 640px;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -48,85 +48,75 @@
 .form-row {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    margin-bottom: 16px;
 }
 
 .form-row label {
     font-size: 14px;
     color: #222;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
+.form-row label .required {
+    color: #FF0000;
+    margin-left: 2px;
+}
+
+/* Поля ввода */
 .profile-form input[type="text"],
 .profile-form input[type="email"],
 .profile-form input[type="tel"],
 .profile-form input[type="date"],
 .profile-form select {
-    padding: 8px 12px;
+    padding: 12px;
     font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    max-width: 100%;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    background-color: #F9F9F9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-form input[type="text"]:disabled,
+.profile-form input[type="email"]:disabled,
+.profile-form input[type="tel"]:disabled,
+.profile-form input[type="date"]:disabled {
+    background-color: #F0F0F0;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Радио-кнопки и чекбоксы */
+.radio-group {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
 }
 
 .profile-form input[type="radio"],
 .profile-form input[type="checkbox"] {
-    margin-right: 6px;
-}
-
-.radio-group {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    font-size: 14px;
-}
-
-/* Кнопка сохранения */
-.form-actions {
-    margin-top: 24px;
-}
-
-.profile-form button[type="submit"] {
-    padding: 10px 20px;
-    font-size: 14px;
-    background-color: orange;
-    border: none;
-    border-radius: 6px;
-    color: white;
+    margin: 0;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-.profile-form button[type="submit"]:hover {
-    background-color: #e39600;
-}
-
-.required {
-    color: red;
-    margin-left: 4px;
-}
-
-.form-inline-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    font-size: 14px;
-}
-
-.link-back {
-    text-decoration: underline;
-    color: #2a2a2a;
-    font-size: 14px;
-    margin-right: 24px;
-}
-
-.profile-form small {
-    font-size: 12px;
-    color: #666;
-}
-
+/* Блок с фото */
 .photo-block {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     flex-wrap: wrap;
 }
@@ -135,6 +125,46 @@
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    border-radius: 4px;
+    border: 1px solid #E5E5E5;
+}
+
+.photo-block small {
+    color: #666;
+    font-size: 12px;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Кнопка отправки */
+.formActions {
+    margin-top: 32px;
+}
+
+.profile-form .submitButton {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #FDA700;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.profile-form .submitButton:hover {
+    background-color: #E69600;
+}
+
+/* Дополнительные стили для даты рождения */
+.form-row .birth-date-options {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.form-row .birth-date-options label {
+    font-size: 13px;
+    color: #444;
 }

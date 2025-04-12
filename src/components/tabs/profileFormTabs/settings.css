@@ -1,36 +1,191 @@
-.finalBlock {
-    border: 2px solid #d4bd83;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
+/* Заголовок секции */
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-.sectionTitle {
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+/* Блок с настройками */
+.finalBlock {
+    border: 1px solid #E5E5E5;
+    background: #FFFFFF;
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Поля формы */
+.formField {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.profile-form .formField {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 25px;
+    flex-direction: row;
 }
 
 .formField.vertical {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 16px;
 }
 
+.formField>label>span {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 500;
+    width: 100%;
+}
+
+.profile-form .formField>label {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Поля ввода */
+.profile-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+.profile-form input[type="text"]:focus {
+    outline: none;
+    border-color: #0066CC;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.1);
+}
+
+/* Радио кнопки */
 .radioLabel,
 .checkboxLabel {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 15px;
+    gap: 12px;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+    padding: 4px 0;
 }
 
-.radioLabel input,
-.checkboxLabel input {
-    margin-right: 10px;
+/* Стили для радиокнопок */
+.radioLabel input[type="radio"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #E5E5E5;
+    border-radius: 50%;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+}
+
+.radioLabel input[type="radio"]:checked {
+    border-color: #FDA700;
+}
+
+.radioLabel input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: #FDA700;
+    border-radius: 50%;
+}
+
+/* Стили для чекбоксов */
+.checkboxLabel input[type="checkbox"] {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #E5E5E5;
+    border-radius: 6px;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    background-color: white;
+}
+
+.checkboxLabel input[type="checkbox"]:checked {
+    border-color: #FDA700;
+    background-color: #FDA700;
+}
+
+.checkboxLabel input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2.5px 2.5px 0;
 }
 
 .desc {
-    font-size: 12px;
-    color: #888;
-    margin-top: 2px;
+    font-size: 13px;
+    color: #666666;
+    margin-top: 4px;
+    margin-left: 32px;
+    display: block;
+}
+
+/* Кнопки действий */
+.formActions {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+    align-items: center;
+}
+
+.link {
+    color: #0066CC;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.submitButton {
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #FDA700;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submitButton:hover {
+    background: #E69600;
+}
+
+/* .profile-form .formField {
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    margin-bottom: 25px;
+} */
+.formField>label {
+    padding-top: 0;
 }

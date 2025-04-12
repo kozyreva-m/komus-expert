@@ -39,22 +39,21 @@ export function renderExperienceTab(data) {
       </div>
 
       <div class="formField">
-        <label>Период работы с</label>
-        <input type="month" name="startDate" value="${formatMonthValue(exp.startDate)}" max="${getTodayMonth()}" />
+        <label>Период работы</label>
+        <div class="period-inputs">
+          <div class="period-row">
+            <input type="month" name="startDate" value="${formatMonthValue(exp.startDate)}" max="${getTodayMonth()}" />
+            <span class="separator">—</span>
+            <input type="month" name="endDate" value="${formatMonthValue(exp.endDate)}" max="${getTodayMonth()}" ${exp.isCurrent ? "disabled" : ""} />
+          </div>
+          <div class="current-job">
+            <input type="checkbox" name="isCurrent" id="current-${index}" ${exp.isCurrent ? "checked" : ""}/>
+            <label for="current-${index}">По настоящее время</label>
+          </div>
+        </div>
       </div>
 
-      <div class="formField">
-        <label>
-          <input type="checkbox" name="isCurrent" ${exp.isCurrent ? "checked" : ""}/> По настоящее время
-        </label>
-      </div>
-
-      <div class="formField end-date-block" style="${exp.isCurrent ? "display: none;" : ""}">
-        <label>по</label>
-        <input type="month" name="endDate" value="${formatMonthValue(exp.endDate)}" max="${getTodayMonth()}" />
-      </div>
-
-      <button type="button" class="removeExperience">Удалить</button>
+      <button type="button" class="removeExperience">Удалить место работы</button>
     </div>
   `;
 
@@ -68,17 +67,21 @@ export function renderExperienceTab(data) {
 
       <div class="formField">
         <label>Общий стаж</label>
-        <input type="text" id="total-years" readonly placeholder="лет" />
-        <input type="text" id="total-months" readonly placeholder="месяцев" />
+        <div class="total-duration">
+          <input type="text" id="total-years" readonly />
+          <span>года</span>
+          <input type="text" id="total-months" readonly />
+          <span>месяцев</span>
+        </div>
       </div>
 
       <div class="formField">
         <label>Рекомендации</label>
-        <textarea name="recommendations">${data.recommendations || ""}</textarea>
+        <textarea name="recommendations" placeholder="Если у вас есть рекомендации с предыдущих мест работы, укажите название организации и контактную информацию.">${data.recommendations || ""}</textarea>
       </div>
 
       <div class="formActions">
-        <button type="button" id="go-back" class="btn-back">Назад</button>
+        <button type="button" id="go-back" class="btn-back">Вернуться в профиль</button>
         <button type="submit" class="submitButton">Продолжить</button>
       </div>
     </form>
