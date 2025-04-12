@@ -1,0 +1,122 @@
+.experienceBlock {
+    border: 2px solid #d4bd83;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .recommendationsDesc {
+    font-size: 12px;
+    width: 125px;
+  }
+  
+  .link {
+    margin: 10px 0px;
+    display: inline-block;
+  }
+  
+  .pickerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .workPeriod {
+    font-size: 12px;
+    color: #797979;
+  }
+  
+  .totalDuration {
+    width: 150px;
+  }
+  
+  .inputGroup,
+  .formField {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .formField > label {
+    width: 125px;
+  }
+  
+  .genderGroup {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .genderGroupLabel {
+    margin-bottom: 10px;
+  }
+  
+  .genderGroupWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: -20px;
+  }
+  
+  .maritalStatusGroup {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .maritalStatusGroupLabel {
+    margin-bottom: 10px;
+  }
+  
+  .maritalStatusGroupWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: -25px;
+  }
+  
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .radioLabel input[type="radio"] {
+    margin-right: 10px;
+    width: 30px;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="number"],
+  input[type="checkbox"],
+  select,
+  textarea {
+    border: 1px solid #ccc !important;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus,
+  input[type="number"]:focus,
+  input[type="checkbox"]:focus,
+  select:focus,
+  textarea:focus {
+    box-shadow: 0 0 2px 0px #fda700 !important;
+    border-color: #fda700 !important;
+  }
+  

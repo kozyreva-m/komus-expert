@@ -1,0 +1,257 @@
+.profile-layout {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.profile-card {
+    width: 300px;
+    background: #f8f8f8;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.profile-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.profile-avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.profile-age {
+    font-size: 13px;
+    color: #666;
+}
+
+.profile-position {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.profile-icon-section {
+    margin: 12px 0;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.profile-icon-label {
+    font-size: 12px;
+    color: #444;
+}
+
+.profile-edit-btn {
+    margin: 16px 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.profile-tags {
+    margin: 12px 0;
+}
+
+.profile-tag {
+    display: inline-block;
+    background: #6ac3b8;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin: 2px;
+}
+
+.profile-about {
+    text-align: left;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+.profile-about-title {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* Посты рядом */
+.profile-feed {
+    flex: 1;
+}
+
+/* Минимальный стиль для постов */
+.post-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.post-tags {
+    margin: 8px 0;
+}
+
+.post-tag {
+    background: #68c392;
+    color: white;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    margin-right: 4px;
+}
+
+.post-title {
+    font-size: 16px;
+    margin: 8px 0 4px;
+}
+
+.post-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.post-image {
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.post-footer {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #888;
+}
+
+.subs-section {
+    margin-bottom: 40px;
+}
+
+.subs-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.subs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    background-color: #2a9ca8;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 16px;
+    font-size: 13px;
+}
+
+.tag-remove {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.subs-add-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.expert-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.expert-card {
+    position: relative;
+    width: 160px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.expert-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.expert-avatar {
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 12px;
+}
+
+.expert-name {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.expert-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+}
+
+.expert-tag {
+    background: #2a9ca8;
+    color: white;
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 6px;
+}

@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    position: relative;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.bg-character {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
+}
+
+
+.layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 40px;
+}
+
+.layout-content {
+    max-width: 980px;
+}
+
+.user-info {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.user-name {
+    margin-top: 8px;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 120%;
+    color: #000;
+}
+
+.search-section {
+    margin-top: 80px;
+}
+
+.search-input-block {
+    border-radius: 12px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 40px 12px;
+    background-color: #81CCB9;
+    display: flex;
+    gap: 12px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+}
+
+.search-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.nav-tabs {
+    display: flex;
+    background-color: #F4F5F7;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 0px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.tab-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #333;
+    padding: 4px 8px;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-link.active {
+    border-color: orange;
+    font-weight: 600;
+}
+
+.btn-ghost {
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tab-content-area {
+    margin-top: 32px;
+}

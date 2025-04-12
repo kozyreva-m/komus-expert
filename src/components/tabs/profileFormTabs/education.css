@@ -1,0 +1,41 @@
+.profile-form .education-block {
+  border: 2px solid #d4bd83;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.profile-form .formField {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-form .formField > label {
+  width: 125px;
+}
+
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
+  border: 1px solid #ccc !important;
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.profile-form input:focus,
+.profile-form select:focus,
+.profile-form textarea:focus {
+  box-shadow: 0 0 2px 0px #fda700 !important;
+  border-color: #fda700 !important;
+}
+
+.profile-form .formActions {
+  display: flex;
+  gap: 20px;
+}

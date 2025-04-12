@@ -1,0 +1,36 @@
+.finalBlock {
+    border: 2px solid #d4bd83;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.sectionTitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.formField.vertical {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.radioLabel,
+.checkboxLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.radioLabel input,
+.checkboxLabel input {
+    margin-right: 10px;
+}
+
+.desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
