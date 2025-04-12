@@ -4,8 +4,12 @@ import { renderExperienceTab } from "./profileFormTabs/experience";
 import { renderPersonalTab } from "./profileFormTabs/personal";
 import { renderSettingsTab } from "./profileFormTabs/settings";
 import { renderSkillsTab } from "./profileFormTabs/skills";
+import { showSpinner, hideSpinner } from "../common/spinner";
 
 export function renderProfileFormPage() {
+    // Скрываем основной контент
+    $("#main-layout").hide();
+    
     const container = $("#tab-content").empty();
 
     const tabParam = new URLSearchParams(location.search).get("tab") || "personal";
@@ -37,6 +41,16 @@ export function renderProfileFormPage() {
     container.append(`<h2 class="form-title">Настройки профиля</h2>`);
     container.append(tabsHtml);
 
+    // Добавляем обработчик клика на табы
+    $(".form-tab").on("click", function(e) {
+        e.preventDefault();
+        const href = $(this).attr("href");
+        showSpinner();
+        history.pushState({}, "", href);
+        window.dispatchEvent(new Event("popstate"));
+    });
+
+    showSpinner();
     getResumeData((data) => {
         if (tabParam === "personal") {
             renderPersonalTab(data.personalData);
@@ -49,5 +63,6 @@ export function renderProfileFormPage() {
         } else if (tabParam === "settings") {
             renderSettingsTab(data.educationData);
         }
+        hideSpinner();
     });
 }

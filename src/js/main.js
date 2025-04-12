@@ -24,7 +24,9 @@ $(document).ready(function () {
 
     const renderPage = () => {
         const page = new URLSearchParams(location.search).get("page");
+        const tab = new URLSearchParams(location.search).get("tab");
 
+        // Скрываем основной контент сразу, если мы на странице профиля
         if (page === "profile-form") {
             $("#main-layout").hide();
             renderProfileFormPage();
@@ -36,6 +38,9 @@ $(document).ready(function () {
 
     renderPage(); // начальный рендер
 
-    // 👉 добавляем обработчик смены адреса
-    window.addEventListener("popstate", renderPage);
+    // Обработчик смены адреса
+    window.addEventListener("popstate", (e) => {
+        e.preventDefault();
+        renderPage();
+    });
 });
