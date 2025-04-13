@@ -1,120 +1,277 @@
-/* Общие поля формы */
-.profile-form .formField {
+/* Общие стили полей формы */
+.form-row {
     display: flex;
-    gap: 6px;
-    margin-bottom: 25px;
+    /* align-items: baseline; */
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.profile-form .formField>label {
-    font-weight: 500;
-    font-size: 14px;
+.form-row > label {
+    width: 180px;
+    font-size: 13px;
+    color: #333;
+    text-align: right;
+    flex-shrink: 0;
 }
 
-.profile-form textarea,
-.profile-form select,
-.profile-form input[type="text"],
-.profile-form input[type="email"],
-.profile-form input[type="tel"],
-.profile-form input[type="number"],
-.profile-form input[type="date"],
-.profile-form input[type="file"] {
-    border: 1px solid #ccc !important;
-    padding: 10px;
-    border-radius: 4px;
-    outline: none;
+.form-row .input-field {
+    flex: 1;
+    max-width: 400px;
+}
+
+/* Поля ввода */
+.profile-form textarea {
     width: 100%;
-    box-sizing: border-box;
+    min-height: 120px;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
     background-color: #fff;
-    font-family: inherit;
-    font-size: 14px;
+    color: #333;
+    resize: vertical;
+    box-sizing: border-box;
 }
 
-.profile-form textarea:focus,
-.profile-form select:focus,
-.profile-form input:focus {
-    box-shadow: 0 0 2px 0 #fda700 !important;
-    border-color: #fda700 !important;
-}
-
-/* Блоки языков */
+/* Блок с языками */
 .language-block {
-    border: 2px solid #d4bd83;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-/* Кнопки */
-.profile-form .link {
-    margin: 10px 0;
-    display: inline-block;
-    color: #0071e3;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.profile-form .removeLanguage {
-    margin-top: 10px;
-    align-self: start;
-    background: #eee;
-    border: none;
-    padding: 8px 14px;
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
     border-radius: 4px;
-    cursor: pointer;
+    padding: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
 }
 
-.profile-form .formActions {
+.language-row {
     display: flex;
-    gap: 15px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.profile-form .btn-back,
-.profile-form .submitButton {
-    padding: 10px 20px;
-    font-size: 14px;
+.language-row select {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid #E5E5E5;
     border-radius: 4px;
-    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="%23222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Кнопка удаления языка */
+.removeLanguage {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
     border: none;
+    color: #666666;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
 }
 
-.profile-form .btn-back {
-    background-color: #ddd;
-    color: #000;
+.removeLanguage:hover {
+    color: #FF0000;
 }
 
-.profile-form .submitButton {
-    background-color: #fda700;
-    color: white;
+.removeLanguage::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Ссылка добавления языка */
+.link {
+    color: #0066CC;
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Блок с водительскими правами */
+.driver-license-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.license-options {
+    display: flex;
+    gap: 20px;
+}
+
+.license-options label,
+.car-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #333;
 }
 
 /* Чекбоксы */
-.profile-form .formField input[type="checkbox"] {
-    margin-right: 6px;
+.profile-form input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    background: white;
 }
 
-/* Документы */
+.profile-form input[type="checkbox"]:checked {
+    border-color: #FDA700;
+}
+
+.profile-form input[type="checkbox"]:checked:after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 8px;
+    height: 8px;
+    border: solid #FDA700;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.profile-form input[type="checkbox"]:hover {
+    border-color: #FDA700;
+}
+
+/* Блок с документами */
+.documents-block {
+    width: 100%;
+    max-width: 400px;
+}
+
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file-upload-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #0066CC;
+    font-size: 13px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.file-upload-button:hover {
+    text-decoration: underline;
+}
+
+.file-info {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Список загруженных документов */
 .uploaded-docs {
     list-style: none;
-    padding-left: 0;
-    margin-top: 10px;
+    padding: 0;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .uploaded-docs li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f5f5f5;
+    background: #F5F5F5;
     padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #333;
 }
 
-.uploaded-docs li button {
-    background: transparent;
+.doc-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.remove-doc {
+    background: none;
     border: none;
-    color: #f00;
+    padding: 4px;
+    color: #666;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.remove-doc:hover {
+    color: #FF0000;
+}
+
+/* Кнопки действий */
+.formActions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn-back {
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #F0F0F0;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background: #E5E5E5;
+}
+
+.submitButton {
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #FDA700;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background: #E69600;
 }
 
 .custom-modal-overlay {
@@ -167,4 +324,14 @@
 .modal-buttons .btn-confirm {
     background-color: #fda700;
     color: white;
+}
+
+/* Специальные стили для блока с документами */
+.documents-block {
+    padding-top: 8px;
+}
+
+/* Специальные стили для блока с языками */
+#languages-list {
+    padding-top: 8px;
 }

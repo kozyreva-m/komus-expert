@@ -1,25 +1,38 @@
 /* Блок опыта работы */
 .experienceBlock {
-    border: 1px solid #E5E5E5;
-    background: #FFFFFF;
-    padding: 24px;
-    border-radius: 8px;
-    margin-bottom: 24px;
+  background: #FFFFFF;
+  padding: 0;
+  margin-bottom: 24px;
+  border: 2px solid #d4bd83;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 20px;
 }
 
 /* Общие стили полей формы */
 .formField {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
-.formField > label {
-    width: 180px;
-    font-size: 14px;
-    color: #222222;
-    padding-top: 12px;
+.formField>label {
+  width: 150px;
+  font-size: 13px;
+  color: #333;
+  text-align: right;
+  padding-top: 8px;
+}
+
+.formField>label .required {
+  color: #FF0000;
+  margin-left: 2px;
+}
+
+.formField .input-field {
+  flex: 1;
+  max-width: 400px;
 }
 
 /* Поля ввода */
@@ -27,139 +40,179 @@
 .profile-form input[type="month"],
 .profile-form select,
 .profile-form textarea {
-    flex: 1;
-    padding: 12px;
-    font-size: 14px;
-    border: 1px solid #E5E5E5;
-    border-radius: 4px;
-    background-color: #F9F9F9;
-    width: 100%;
-    box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 400px;
+  box-sizing: border-box;
+  color: #333;
 }
 
 .profile-form textarea {
-    min-height: 120px;
-    resize: vertical;
+  min-height: 120px;
+  resize: vertical;
 }
 
 /* Селект для уровня должности */
 .profile-form select {
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="%23222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6L8 10L12 6" stroke="%23222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
 }
 
 /* Период работы */
 .period-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .period-row input[type="month"] {
-    width: 160px;
+  width: 194px;
 }
 
-.period-row .separator {
-    color: #666;
-    margin: 0 8px;
+.separator {
+  color: #999;
 }
 
 /* Чекбокс "По настоящее время" */
 .current-job {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 8px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .current-job input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    margin: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #E5E5E5;
+  border-radius: 2px;
+}
+
+.current-job input[type="checkbox"]:checked {
+  border-color: #FDA700;
+}
+
+.current-job input[type="checkbox"]:checked:after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 1px;
+  width: 8px;
+  height: 8px;
+  border: solid #FDA700;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.current-job input[type="checkbox"]:hover {
+  border-color: #FDA700;
 }
 
 .current-job label {
-    font-size: 14px;
-    color: #222;
-    cursor: pointer;
+  color: #666;
+  font-size: 13px;
 }
 
 /* Общий стаж */
 .total-duration {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  margin-bottom: 32px;
 }
 
 .total-duration input {
-    width: 80px !important;
+  width: 48px !important;
 }
 
 .total-duration span {
-    color: #666;
-    font-size: 14px;
+  color: #666;
+  font-size: 13px;
 }
 
 /* Ссылка добавления опыта */
-.link {
-    display: inline-flex;
-    align-items: center;
-    color: #0066CC;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 16px 0;
+.addExperience {
+  display: inline-flex;
+  align-items: center;
+  color: #0066CC;
+  text-decoration: none;
+  font-size: 13px;
+  margin: 24px 0;
+  cursor: pointer;
 }
 
-.link:hover {
-    text-decoration: underline;
+.addExperience:hover {
+  text-decoration: underline;
 }
 
 /* Кнопка удаления опыта */
 .removeExperience {
-    background: none;
-    border: none;
-    color: #666666;
-    font-size: 14px;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 16px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  color: #666666;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 15px;
+  border-radius: 6px;
+  margin-top: 16px;
 }
 
 .removeExperience:hover {
-    color: #FF0000;
+  color: #FF0000;
 }
 
 /* Кнопки действий */
 .formActions {
-    display: flex;
-    gap: 16px;
-    margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
 }
 
 .btn-back {
-    padding: 12px 24px;
-    font-size: 14px;
-    background: #F0F0F0;
-    border: none;
-    border-radius: 4px;
-    color: #222;
-    cursor: pointer;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #F5F5F5;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  background: #E5E5E5;
 }
 
 .submitButton {
-    padding: 12px 24px;
-    font-size: 14px;
-    background: #FDA700;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #FDA700;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
 }
 
 .submitButton:hover {
-    background: #E69600;
+  background-color: #E69600;
 }
-  
+
+.end-date-block {
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.end-date-block[style*="display: none"] {
+  opacity: 0;
+}

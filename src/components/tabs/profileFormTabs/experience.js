@@ -1,5 +1,7 @@
 import { API_HOST } from "../../../js/api";
 import { handleFormSubmit } from "../../../js/utils";
+import { showModal } from "../../../components/common/modal";
+import { validateForm } from "../../../js/validation";
 import "./experience.css";
 
 export function renderExperienceTab(data) {
@@ -45,7 +47,9 @@ export function renderExperienceTab(data) {
           <div class="period-row">
             <input type="month" name="startDate" value="${formatMonthValue(exp.startDate)}" max="${getTodayMonth()}" />
             <span class="separator">—</span>
-            <input type="month" name="endDate" value="${formatMonthValue(exp.endDate)}" max="${getTodayMonth()}" ${exp.isCurrent ? "disabled" : ""} />
+            <div class="end-date-block" style="${exp.isCurrent ? 'display: none;' : ''}">
+              <input type="month" name="endDate" value="${formatMonthValue(exp.endDate)}" max="${getTodayMonth()}" ${exp.isCurrent ? "disabled" : ""} />
+            </div>
           </div>
           <div class="current-job">
             <input type="checkbox" name="isCurrent" id="current-${index}" ${exp.isCurrent ? "checked" : ""}/>
@@ -54,7 +58,7 @@ export function renderExperienceTab(data) {
         </div>
       </div>
 
-      <button type="button" class="removeExperience">Удалить место работы</button>
+      <button type="button" class="removeExperience">Удалить</button>
     </div>
   `;
 
@@ -66,7 +70,7 @@ export function renderExperienceTab(data) {
 
       <a href="#" id="add-experience" class="link">+ Добавить еще одно место работы</a>
 
-      <div class="formField">
+      <div class="formField" style="align-items: baseline;">
         <label>Общий стаж</label>
         <div class="total-duration">
           <input type="text" id="total-years" readonly />
@@ -122,8 +126,40 @@ export function renderExperienceTab(data) {
 
   // Удаление места работы
   $(document).on("click", ".removeExperience", function () {
-    $(this).closest(".experienceBlock").remove();
-    recalculateDuration();
+    // Удаляем все существующие модальные окна перед созданием нового
+    $(".modal-overlay").remove();
+    
+    const $block = $(this).closest(".experienceBlock");
+    const company = $block.find("[name='organizationName']").val().trim() || 'это место работы';
+    
+    const $modal = showModal({
+        title: 'Подтверждение удаления',
+        content: `Вы уверены, что хотите удалить место работы "${company}"?`,
+        buttons: [
+            {
+                text: 'Отмена',
+                type: 'cancel',
+                action: 'close'
+            },
+            {
+                text: 'Удалить',
+                type: 'confirm',
+                action: 'delete'
+            }
+        ]
+    });
+
+    // Добавляем обработчики один раз
+    $modal.find("button").one("click", function() {
+        const action = $(this).data("action");
+        
+        if (action === "delete") {
+            $block.remove();
+            recalculateDuration();
+        }
+        
+        $modal.remove();
+    });
   });
 
   // Скрытие/показ блока "по"
@@ -131,6 +167,7 @@ export function renderExperienceTab(data) {
     const $block = $(this).closest(".experienceBlock");
     const isChecked = $(this).is(":checked");
     $block.find(".end-date-block").toggle(!isChecked);
+    $block.find("[name='endDate']").prop("disabled", isChecked);
     recalculateDuration();
   });
 
@@ -143,9 +180,64 @@ export function renderExperienceTab(data) {
     window.dispatchEvent(new Event("popstate"));
   });
 
+  function validateExperienceForm() {
+    let isValid = true;
+    const fields = [];
+
+    $("#experience-list .experienceBlock").each(function(index) {
+        const blockNumber = index + 1;
+        const $block = $(this);
+        
+        fields.push(
+            {
+                selector: $block.find("[name='organizationName']"),
+                name: `Название организации (блок ${blockNumber})`,
+                value: $block.find("[name='organizationName']").val()
+            },
+            {
+                selector: $block.find("[name='position']"),
+                name: `Должность (блок ${blockNumber})`,
+                value: $block.find("[name='position']").val()
+            },
+            {
+                selector: $block.find("[name='startDate']"),
+                name: `Дата начала работы (блок ${blockNumber})`,
+                value: $block.find("[name='startDate']").val()
+            }
+        );
+
+        const isCurrent = $block.find("[name='isCurrent']").is(":checked");
+        if (!isCurrent) {
+            fields.push({
+                selector: $block.find("[name='endDate']"),
+                name: `Дата окончания работы (блок ${blockNumber})`,
+                value: $block.find("[name='endDate']").val(),
+                customCheck: (value, $field) => {
+                    if (!value) {
+                        return "Укажите дату окончания работы или отметьте 'По настоящее время'";
+                    }
+                    const startDate = new Date($block.find("[name='startDate']").val());
+                    const endDate = new Date(value);
+                    if (startDate > endDate) {
+                        return "Дата окончания не может быть раньше даты начала";
+                    }
+                    return null;
+                }
+            });
+        }
+    });
+
+    return validateForm(fields);
+  }
+
   // Отправка формы
   $("#experience-form").on("submit", async function (e) {
     e.preventDefault();
+
+    // Проверяем форму перед отправкой
+    if (!validateExperienceForm()) {
+        return;
+    }
 
     const result = {
       resumeId: window.resumeId || "",
@@ -194,4 +286,17 @@ export function renderExperienceTab(data) {
 
   // Первичный пересчет стажа
   recalculateDuration();
+
+  // Добавляем стили для полей с ошибками
+  const style = document.createElement('style');
+  style.textContent = `
+    .error {
+        border-color: #FF0000 !important;
+    }
+    .error:focus {
+        border-color: #FF0000 !important;
+        outline-color: #FF0000 !important;
+    }
+  `;
+  document.head.appendChild(style);
 }

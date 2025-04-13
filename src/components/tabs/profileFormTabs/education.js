@@ -1,5 +1,6 @@
 import { API_HOST } from "../../../js/api";
 import { handleFormSubmit } from "../../../js/utils";
+import { validateForm } from "../../../js/validation";
 import "./education.css";
 
 
@@ -13,7 +14,7 @@ export function renderEducationTab(data) {
   const renderEducationBlock = (education, index) => `
     <div class="education-block" data-index="${index}">
       <div class="formField">
-        <label>Учебное заведение</label>
+        <label>Учебное заведение <span style="color: red">*</span></label>
         <input type="text" name="institution" value="${education.institution || ""}" />
       </div>
 
@@ -35,7 +36,7 @@ export function renderEducationTab(data) {
 
       <div class="formField">
         <label>Специальность <span style="color: red">*</span></label>
-        <input type="text" name="specialization" value="${education.specialization || ""}" required />
+        <input type="text" name="specialization" value="${education.specialization || ""}" />
       </div>
 
       <div class="formField">
@@ -94,18 +95,84 @@ export function renderEducationTab(data) {
     window.dispatchEvent(new Event("popstate"));
   });
 
+  function validateEducationForm() {
+    const fields = [];
+
+    $("#education-list .education-block").each(function(index) {
+        const blockNumber = index + 1;
+        const $block = $(this);
+        
+        fields.push(
+            {
+                selector: $block.find("[name='institution']"),
+                name: `Учебное заведение (блок ${blockNumber})`,
+                value: $block.find("[name='institution']").val()
+            },
+            {
+                selector: $block.find("[name='educationLevel']"),
+                name: `Уровень образования (блок ${blockNumber})`,
+                value: $block.find("[name='educationLevel']").val()
+            },
+            {
+                selector: $block.find("[name='specialization']"),
+                name: `Специальность (блок ${blockNumber})`,
+                value: $block.find("[name='specialization']").val(),
+                required: true,
+                customCheck: (value, $field) => {
+                    if (!value || value.trim() === '') {
+                        $field.addClass('error');
+                        // Прокручиваем к полю с ошибкой
+                        setTimeout(() => {
+                            $('html, body').animate({
+                                scrollTop: $field.offset().top - 100
+                            }, 300);
+                        }, 100);
+                        return 'Поле обязательно для заполнения';
+                    }
+                    $field.removeClass('error');
+                    return null;
+                }
+            },
+            {
+                selector: $block.find("[name='graduationYear']"),
+                name: `Год окончания (блок ${blockNumber})`,
+                value: $block.find("[name='graduationYear']").val()
+            }
+        );
+    });
+
+    return validateForm(fields);
+  }
+
+  // Добавляем стили для полей с ошибками
+  const style = document.createElement('style');
+  style.textContent = `
+      .error {
+          border-color: #FF0000 !important;
+      }
+      .error:focus {
+          border-color: #FF0000 !important;
+          outline-color: #FF0000 !important;
+      }
+  `;
+  document.head.appendChild(style);
+
   // Отправка
   $("#education-form").on("submit", async function (e) {
     e.preventDefault();
 
+    if (!validateEducationForm()) {
+        return;
+    }
+
     const educations = [];
     $("#education-list .education-block").each(function () {
-      educations.push({
-        educationLevel: $(this).find("[name='educationLevel']").val(),
-        institution: $(this).find("[name='institution']").val(),
-        specialization: $(this).find("[name='specialization']").val(),
-        graduationYear: $(this).find("[name='graduationYear']").val(),
-      });
+        educations.push({
+            educationLevel: $(this).find("[name='educationLevel']").val(),
+            institution: $(this).find("[name='institution']").val(),
+            specialization: $(this).find("[name='specialization']").val(),
+            graduationYear: $(this).find("[name='graduationYear']").val(),
+        });
     });
 
     const formData = new FormData();

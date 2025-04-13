@@ -28,7 +28,7 @@
 
 .profile-form .formField {
     display: flex;
-    gap: 6px;
+    gap: 25px;
     margin-bottom: 25px;
     flex-direction: row;
 }
