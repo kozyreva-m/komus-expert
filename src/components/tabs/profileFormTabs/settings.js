@@ -7,10 +7,10 @@ export function renderSettingsTab() {
 
   const mockData = {
     communityName: "Блог Василия Пупкина",
-    communityType: "public", // public | private
+    communityType: "private", // public | private
     profileVisibility: {
       all: true,
-      hr: false
+      hr: true
     }
   };
 

@@ -42,7 +42,7 @@
 .followers-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 40px;
 }
 
 .follower-card {
@@ -50,11 +50,11 @@
     align-items: center;
     gap: 12px;
     padding: 10px 35px 10px 10px;
-    border-radius: 6px;
+    border-radius: 18px;
     background: #fff;
     border: 1px solid #E5E5E5;
     position: relative;
-    width: 250px;
+    width: 215px;
 }
 
 .follower-card:hover {
@@ -62,14 +62,30 @@
 }
 
 .follower-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
     object-fit: cover;
 }
 
 .follower-info {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.follower-firstname {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.follower-lastname {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.2;
 }
 
 .follower-name {
