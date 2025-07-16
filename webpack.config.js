@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         assetModuleFilename: 'assets/[name][ext]',
         clean: true,
-        publicPath: '/komus_expert/'
+        publicPath: '/komus_expert_app/build/'
     },
     module: {
         rules: [

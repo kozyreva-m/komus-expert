@@ -1,104 +1,74 @@
 import { API_HOST } from "../../js/api";
 
 export function getProfile(callback) {
-    setTimeout(() => {
-        callback({
-            blog: {
-                id: 123,
-                title: "КЛУБ ПЕРВООТКРЫВАТЕЛЕЙ"
-            },
-            name: "Игорь Васильев",
-            age: 34,
-            position: "Менеджер по продажам",
-            avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-            tags: ["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"],
-            about:
-                "Ваше резюме будет доступно для просмотра всем компаниям и кадровым агентствам, которые зарегистрированы на HeadHunter, за исключением тех, которые вы отметите в специальном окне. Таким резюме вы сможете откликаться на все вакансии сайта HeadHunter, однако те компании, которым вы запретили просматривать свое резюме, не будут иметь к нему доступ через поиск по базе данных и по прямой ссылке. При отклике на конкретную вакансию компании «N», внесенной вами в stop-список, настройки видимости вашего резюме автоматически изменятся, и компания «N» удалится из stop-списка.",
-            badges: [
-                {
-                    label: "Какой-то бейдж",
-                    icon: "https://media.komus.ru/image/icons/mrp-giraffe.png"
-                },
-                {
-                    label: "Дорос до МРП!",
-                    icon: "https://media.komus.ru/image/icons/mrp-giraffe.png"
-                }
-            ]
-        });
-    }, 300);
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_profile`;
+
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data);
+        } else {
+            console.error("Ошибка загрузки профиля:", response.error_text);
+            callback(null);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса профиля:", err);
+        callback(null);
+    });
 }
+
 
 export function getPosts(callback) {
-    setTimeout(() => {
-        callback([
-            {
-                blog: {
-                    id: 123,
-                    title: "КЛУБ ПЕРВООТКРЫВАТЕЛЕЙ"
-                },
-                time: "07.11.2016",
-                tags: ["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"],
-                title: "Новый проект – Экспертум",
-                content:
-                    "Клуб предлагает уникальную возможность для обмена знаниями и идеями...",
-                likes: 6,
-                comments: 1,
-                image: "https://via.placeholder.com/400x200"
-            },
-            {
-                blog: {
-                    id: 123,
-                    title: "КЛУБ ПЕРВООТКРЫВАТЕЛЕЙ"
-                },
-                time: "04.11.2016",
-                tags: ["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"],
-                title: "Новый проект – Экспертум",
-                content:
-                    "Клуб предлагает уникальную возможность для обмена знаниями и идеями...",
-                likes: 7,
-                comments: 2,
-                image: null
-            }
-        ]);
-    }, 300);
-}
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_blog_posts`;
 
-export function getSubscribedTags(callback) {
-    setTimeout(() => {
-        callback(["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"]);
-    }, 300);
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data);
+        } else {
+            console.error("Ошибка загрузки постов:", response.error_text);
+            callback([]);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса постов:", err);
+        callback([]);
+    });
 }
 
 export function getSubscribedExperts(callback) {
-    setTimeout(() => {
-        callback([
-            {
-                name: "Анжелика Варламова",
-                avatar: "https://randomuser.me/api/portraits/women/65.jpg",
-                tags: ["БЭКОФИС", "МЕДИЦИНА"]
-            },
-            {
-                name: "Дмитрий Богачев",
-                avatar: "https://randomuser.me/api/portraits/men/45.jpg",
-                tags: ["БЭКОФИС", "ОБРАЗОВАНИЕ"]
-            },
-            {
-                name: "Игорь Васильев",
-                avatar: "https://randomuser.me/api/portraits/men/31.jpg",
-                tags: ["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"]
-            },
-            {
-                name: "Виталий Арсеньев",
-                avatar: "https://randomuser.me/api/portraits/men/75.jpg",
-                tags: ["БЭКОФИС", "МЕДИЦИНА", "ОБРАЗОВАНИЕ"]
-            }
-        ]);
-    }, 300);
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_subscribed_experts`;
+
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data);
+        } else {
+            console.error("Ошибка загрузки экспертов:", response.error_text);
+            callback([]);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса экспертов:", err);
+        callback([]);
+    });
 }
 
-// https://sdo.komus.net/komus_career_app/api/controller.html?action=get_employee_resume&user_id=null&resume_id=null
+export function getSubscribedTopics(callback) {
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_subscribed_topics`;
+
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data);
+        } else {
+            console.error("Ошибка загрузки топиков:", response.error_text);
+            callback([]);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса топиков:", err);
+        callback([]);
+    });
+}
+
+
+// https://sdo.komus.net/komus_expert_app/api/controller.html?action=get_employee_resume&user_id=null&resume_id=null
 export function getResumeData(callback) {
-    const url = `${API_HOST}/komus_career_app/api/controller.html?action=get_employee_resume&user_id=null&resume_id=null`;
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_employee_resume&user_id=null&resume_id=null`;
 
     $.get(url, function (response) {
         if (response.success && response.data && response.data.length > 0) {
@@ -110,5 +80,42 @@ export function getResumeData(callback) {
         }
     }).fail(function (err) {
         console.error("Ошибка запроса:", err);
+    });
+}
+
+// Функция для получения данных из КОМУС Карьеры для импорта
+export function getKomusCareerData(callback) {
+    const url = `${API_HOST}/komus_career_app/api/controller.html?action=get_employee_resume&user_id=null&resume_id=null`;
+
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data[0]);
+        } else {
+            console.error("Ошибка загрузки данных КОМУС Карьеры:", response.error_text);
+            callback(null);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса данных КОМУС Карьеры:", err);
+        callback(null);
+    });
+}
+
+/**
+ * Получает список подписчиков с сервера
+ * @param {function} callback
+ */
+export function getFollowers(callback) {
+    const url = `${API_HOST}/komus_expert_app/api/controller.html?action=get_followers`;
+
+    $.get(url, function (response) {
+        if (response.success && response.data) {
+            callback(response.data || []);
+        } else {
+            console.error("Ошибка загрузки подписчиков:", response.error_text);
+            callback([]);
+        }
+    }).fail(function (err) {
+        console.error("Ошибка запроса подписчиков:", err);
+        callback([]);
     });
 }

@@ -209,10 +209,10 @@ export function renderPersonalTab(data) {
 
         await handleFormSubmit({
             formData,
-            apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_personal_data`,
+            apiUrl: `${API_HOST}/komus_expert_app/api/controller.html?action=send_resume_personal_data`,
             onSuccess: () => {
                 const resumeId = window.resumeId;
-                const nextUrl = `?page=profile-form&tab=experience&resume_id=${resumeId}`;
+                const nextUrl = `/expert_app?page=profile-form&tab=experience&resume_id=${resumeId}`;
                 history.pushState({}, "", nextUrl);
                 window.dispatchEvent(new Event("popstate"));
             }

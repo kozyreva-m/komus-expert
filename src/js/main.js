@@ -7,8 +7,8 @@ import { renderProfileFormPage } from "../components/tabs/profileFormPage.js";
 
 $(document).ready(function () {
     // Проверяем, находимся ли мы на правильном пути
-    if (window.location.pathname !== '/komus_expert' && !window.location.pathname.startsWith('/komus_expert/')) {
-        window.location.replace('/komus_expert');
+    if (window.location.pathname !== '/expert_app' && !window.location.pathname.startsWith('/expert_app/')) {
+        window.location.replace('/expert_app');
         return;
     }
 

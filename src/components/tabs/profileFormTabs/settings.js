@@ -87,7 +87,7 @@ export function renderSettingsTab() {
       </div>
 
       <div class="formActions">
-        <a href="?page=profile-form&tab=education&resume_id=${window.resumeId}" class="link">Вернуться в профиль</a>
+        <a href="/expert_app?page=profile-form&tab=education&resume_id=${window.resumeId}" class="link">Вернуться в профиль</a>
         <button type="submit" class="submitButton">Сохранить</button>
       </div>
     </form>
@@ -119,10 +119,10 @@ export function renderSettingsTab() {
 
     await handleFormSubmit({
       formData,
-      apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_settings_data`,
+      apiUrl: `${API_HOST}/komus_expert_app/api/controller.html?action=send_resume_settings_data`,
       onSuccess: () => {
         // После успешного сохранения можно перенаправить на страницу профиля
-        history.pushState({}, "", "?page=profile");
+        history.pushState({}, "", "/expert_app?page=profile");
         window.dispatchEvent(new Event("popstate"));
       }
     });

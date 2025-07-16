@@ -7,9 +7,9 @@ import "./skills.css";
 export async function renderSkillsTab(data) {
     const $container = $("#form-tab-content").empty();
 
-    const langs = await fetch(`${API_HOST}/komus_career_app/api/controller.html?action=get_langs`).then(r => r.json()).then(r => r.data);
-    const levels = await fetch(`${API_HOST}/komus_career_app/api/controller.html?action=get_levels`).then(r => r.json()).then(r => r.data);
-    const docs = await fetch(`${API_HOST}/komus_career_app/api/controller.html?action=get_skills_docs&resume_id=${window.resumeId}`).then(r => r.json()).then(r => r.data);
+    const langs = await fetch(`${API_HOST}/komus_expert_app/api/controller.html?action=get_langs`).then(r => r.json()).then(r => r.data);
+    const levels = await fetch(`${API_HOST}/komus_expert_app/api/controller.html?action=get_levels`).then(r => r.json()).then(r => r.data);
+    const docs = await fetch(`${API_HOST}/komus_expert_app/api/controller.html?action=get_skills_docs&resume_id=${window.resumeId}`).then(r => r.json()).then(r => r.data);
 
     const renderLanguageBlock = (lang, index) => `
     <div class="form-row">
@@ -128,7 +128,7 @@ export async function renderSkillsTab(data) {
 
 
     $("#go-back").on("click", function () {
-        history.pushState({}, "", `?page=profile-form&tab=experience&resume_id=${window.resumeId}`);
+        history.pushState({}, "", `/expert_app?page=profile-form&tab=experience&resume_id=${window.resumeId}`);
         window.dispatchEvent(new Event("popstate"));
     });
 
@@ -191,9 +191,9 @@ export async function renderSkillsTab(data) {
 
         await handleFormSubmit({
             formData,
-            apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_skills_data`,
+            apiUrl: `${API_HOST}/komus_expert_app/api/controller.html?action=send_resume_skills_data`,
             onSuccess: () => {
-                const nextUrl = `?page=profile-form&tab=education&resume_id=${window.resumeId}`;
+                const nextUrl = `/expert_app?page=profile-form&tab=education&resume_id=${window.resumeId}`;
                 history.pushState({}, "", nextUrl);
                 window.dispatchEvent(new Event("popstate"));
             }
@@ -256,7 +256,7 @@ export async function renderSkillsTab(data) {
             if (action === "delete") {
                 if (fileId) {
                     // Если есть fileId - это загруженный файл, удаляем с сервера
-                    fetch(`${API_HOST}/komus_career_app/api/controller.html?action=remove_uploaded_file&resume_id=${window.resumeId}&file_id=${fileId}`)
+                    fetch(`${API_HOST}/komus_expert_app/api/controller.html?action=remove_uploaded_file&resume_id=${window.resumeId}&file_id=${fileId}`)
                         .then(() => {
                             $docItem.remove();
                             $modal.remove();

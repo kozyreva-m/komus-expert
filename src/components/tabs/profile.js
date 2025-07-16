@@ -29,7 +29,7 @@ export function renderProfileTab() {
                 )
                 .join("")}
           </div>
-          <a href="?page=profile-form&tab=personal" class="profile-edit-btn">Редактировать профиль</a>
+          <a href="/expert_app?page=profile-form&tab=personal" class="profile-edit-btn">Редактировать профиль</a>
 
 
           <div class="profile-tags">

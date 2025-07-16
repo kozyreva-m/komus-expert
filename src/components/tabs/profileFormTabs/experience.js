@@ -176,7 +176,7 @@ export function renderExperienceTab(data) {
 
   // Назад
   $("#go-back").on("click", function () {
-    history.pushState({}, "", "?page=profile-form&tab=personal&resume_id=" + window.resumeId);
+    history.pushState({}, "", "/expert_app?page=profile-form&tab=personal&resume_id=" + window.resumeId);
     window.dispatchEvent(new Event("popstate"));
   });
 
@@ -275,9 +275,9 @@ export function renderExperienceTab(data) {
 
     await handleFormSubmit({
       formData,
-      apiUrl: `${API_HOST}/komus_career_app/api/controller.html?action=send_resume_experience_data`,
+      apiUrl: `${API_HOST}/komus_expert_app/api/controller.html?action=send_resume_experience_data`,
       onSuccess: () => {
-        const nextUrl = `?page=profile-form&tab=skills&resume_id=${window.resumeId}`;
+        const nextUrl = `/expert_app?page=profile-form&tab=skills&resume_id=${window.resumeId}`;
         history.pushState({}, "", nextUrl);
         window.dispatchEvent(new Event("popstate"));
       }
